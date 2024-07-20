@@ -47,6 +47,15 @@ namespace Departments.Models
                 new Department(29,HierarchyId.Parse("/4/1/3/1/"), "Department 28"),
                 new Department(30, HierarchyId.Parse("/3/2/1/1/1/"), "Department 29")
                 );
+
+            modelBuilder.Entity<Reminder>().HasData(
+                new Reminder(1, "Reminder 01", DateTime.Now.AddMinutes(1)),
+                new Reminder(2, "Reminder 02", DateTime.Now.AddMinutes(1)),
+                new Reminder(3, "Reminder 03", DateTime.Now.AddMinutes(2)),
+                new Reminder(4, "Reminder 04", DateTime.Now.AddMinutes(2)),
+                new Reminder(5, "Reminder 05", DateTime.Now.AddMinutes(3)),
+                new Reminder(6, "Reminder 06", DateTime.Now.AddMinutes(3))
+                );
         }
     }
 }
