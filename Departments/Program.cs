@@ -1,4 +1,5 @@
 using Departments.Models;
+using Departments.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         x => x.UseHierarchyId()));
+
+builder.Services.AddSingleton<INotificationHandler, NotificationHandler>();
+builder.Services.AddHostedService<NotificationService>();
 
 var app = builder.Build();
 
