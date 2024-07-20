@@ -96,18 +96,38 @@ namespace Departments.Controllers
         }
 
         // GET: RemindersController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            Reminder? reminder = _dbContext.Reminders.Find(id);
+
+            if (id == null || id == 0 || reminder == null)
+            {
+                return NotFound();
+            }
+
+            return View(reminder);
         }
 
         // POST: RemindersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int? id, Reminder reminder)
         {
             try
             {
+                Reminder? _reminder = _dbContext.Reminders.Find(id);
+
+                if (id == null || id == 0 || _reminder == null)
+                {
+                    return NotFound();
+                }
+
+                _reminder.Title = reminder.Title;
+                _reminder.ReminderTime = reminder.ReminderTime;
+
+                _dbContext.Reminders.Remove(_reminder);
+                _dbContext.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
