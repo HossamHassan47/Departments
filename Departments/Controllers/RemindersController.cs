@@ -1,6 +1,7 @@
 ﻿using Departments.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Departments.Controllers
 {
@@ -54,18 +55,38 @@ namespace Departments.Controllers
         }
 
         // GET: RemindersController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            Reminder? reminder = _dbContext.Reminders.Find(id);
+
+            if (id == null || id == 0 || reminder == null)
+            {
+                return NotFound();
+            }
+
+            return View(reminder);
         }
 
         // POST: RemindersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int? id, Reminder reminder)
         {
             try
             {
+                Reminder? _reminder = _dbContext.Reminders.Find(id);
+
+                if (id == null || id == 0 || _reminder == null)
+                {
+                    return NotFound();
+                }
+
+                _reminder.Title= reminder.Title;
+                _reminder.ReminderTime = reminder.ReminderTime;
+
+                _dbContext.Reminders.Update(_reminder);
+                _dbContext.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
