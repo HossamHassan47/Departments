@@ -11,7 +11,6 @@ namespace Departments.Controllers
         {
             List<Department> departments = _dbContext.Departments.ToList();
 
-
             return View(departments);
         }
 
