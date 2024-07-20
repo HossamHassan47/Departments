@@ -1,0 +1,46 @@
+﻿@model DepartmentDto
+
+<h1>Path: @Model.Department.Path </h1>
+<h1>Name: @Model.Department.Name</h1>
+
+<h2>Sub Departments:</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Path</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model.SubDepartments)
+        {
+            <tr>
+                <td>@department.Path</td>
+                <td>@department.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Parent Departments:</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Path</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model.ParentDepartments)
+        {
+            <tr>
+                <td>@department.Path</td>
+                <td>@department.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" 
+   class="btn btn-dark">Back to Departments</a>
+
