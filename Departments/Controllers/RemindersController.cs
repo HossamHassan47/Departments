@@ -17,9 +17,16 @@ namespace Departments.Controllers
         }
 
         // GET: RemindersController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            Reminder? reminder = _dbContext.Reminders.Find(id);
+
+            if (id == null || id == 0 || reminder == null)
+            {
+                return NotFound();
+            }
+
+            return View(reminder);
         }
 
         // GET: RemindersController/Create
