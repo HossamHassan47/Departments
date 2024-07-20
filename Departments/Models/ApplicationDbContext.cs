@@ -11,6 +11,8 @@ namespace Departments.Models
 
         public DbSet<Department> Departments { get; set; }
 
+        public DbSet<Reminder> Reminders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>().HasData(
