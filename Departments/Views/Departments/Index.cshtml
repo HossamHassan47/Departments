@@ -1,6 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<Department>
+
 <h1>Departments</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Path</th>
+            <th>Name</th>
+            <th>Logo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@department.Id</td>
+                <td>@department.Path</td>
+                <td>@department.Name</td>
+                <td>@department.Logo</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
