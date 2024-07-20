@@ -8,5 +8,7 @@ namespace Departments.Models
         {
 
         }
+
+        public DbSet<Department> Departments { get; set; }
     }
 }
