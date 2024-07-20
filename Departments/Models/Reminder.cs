@@ -4,6 +4,10 @@ namespace Departments.Models
 {
     public class Reminder
     {
+        public Reminder()
+        {
+            
+        }
         public Reminder(int id, string title, DateTime reminderTime)
         {
             this.Id = id;  

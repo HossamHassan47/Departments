@@ -38,10 +38,13 @@ namespace Departments.Controllers
         // POST: RemindersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Reminder reminder)
         {
             try
             {
+                _dbContext.Reminders.Add(reminder);
+                _dbContext.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
